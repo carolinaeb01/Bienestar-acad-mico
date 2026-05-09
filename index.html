@@ -1,0 +1,578 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>A tiempo con mi bienestar</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Trebuchet MS", Arial, sans-serif;
+      background: #fff0d6;
+      color: #222;
+    }
+
+    header {
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      padding: 40px 20px;
+      text-align: center;
+      background:
+        radial-gradient(circle at 10% 20%, #ff6b6b 0 8%, transparent 9%),
+        radial-gradient(circle at 90% 15%, #48cae4 0 9%, transparent 10%),
+        radial-gradient(circle at 80% 85%, #90be6d 0 10%, transparent 11%),
+        radial-gradient(circle at 15% 85%, #ffd166 0 9%, transparent 10%),
+        linear-gradient(135deg, #fff3b0, #ffd6e0, #caffbf);
+      overflow: hidden;
+    }
+
+    .portada {
+      max-width: 850px;
+      animation: entrada 1s ease;
+    }
+
+    .etiqueta {
+      display: inline-block;
+      background: #144612;
+      color: rgb(255, 255, 255);
+      padding: 10px 18px;
+      border-radius: 30px;
+      font-weight: bold;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(45px, 9vw, 95px);
+      line-height: 0.95;
+      color: #1f7a74;
+      text-shadow: 5px 5px 0 #144e4a;
+    }
+
+    .subtitulo {
+      font-size: 24px;
+      font-weight: bold;
+      color: #5a3b2e;
+    }
+
+    .botones {
+      margin-top: 30px;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    .botones a {
+      text-decoration: none;
+      background: #ad61af;
+      color: white;
+      padding: 14px 22px;
+      border-radius: 14px;
+      border: 4px solid #613763;
+      font-weight: bold;
+      box-shadow: 5px 5px 0 #222;
+      transition: transform 0.2s;
+    }
+
+    .botones a:hover {
+      transform: translateY(-5px);
+    }
+
+    section {
+      padding: 70px 20px;
+    }
+
+    .contenedor {
+      max-width: 1150px;
+      margin: auto;
+    }
+
+    .titulo-seccion {
+      text-align: center;
+      font-size: 42px;
+      color: #e85d04;
+      text-shadow: 3px 3px 0 #aa4100;
+      margin-top: 0;
+    }
+
+    .intro-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 25px;
+      align-items: center;
+    }
+
+    .foto-juego {
+      background: white;
+      border: 6px solid #48cae4;
+      border-radius: 24px;
+      padding: 18px;
+      box-shadow: 12px 12px 0 #329cb1;
+      transform: rotate(-2deg);
+    }
+
+    .foto-juego img {
+      width: 100%;
+      border-radius: 16px;
+      border: 4px solid #48cae4;
+    }
+
+    .texto-destacado {
+      background: #ffffff;
+      border: 6px solid #90be6d;
+      border-radius: 24px;
+      padding: 30px;
+      box-shadow: 12px 12px 0 #699448;
+      font-size: 20px;
+      font-weight: bold;
+    }
+
+    .pasos {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 22px;
+      margin-top: 35px;
+    }
+
+    .paso {
+      background: white;
+      border: 5px solid #222;
+      border-radius: 22px;
+      padding: 25px;
+      box-shadow: 12px 12px 0 rgba(0,0,0,0.35);
+      transition: transform 0.3s;
+    }
+
+    .paso:hover {
+      transform: rotate(-2deg) scale(1.04);
+  box-shadow: 12px 12px 0 rgba(0,0,0,0.35);
+  background-color: #fff3b0;
+  border: 5px solid #eed85d;
+    }
+
+    .numero {
+      width: 55px;
+      height: 55px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: #ffd166;
+      border: 4px solid #222;
+      font-size: 26px;
+      font-weight: bold;
+      margin-bottom: 15px;
+       transition: background-color 0.3s, color 0.3s, border-color 0.3s, transform 0.3s;
+    }
+.paso:hover .numero {
+  background-color: #ad61af;
+  color: white;
+  border-color: #613763;
+  transform: rotate(8deg) scale(1.1);
+}
+    .paso h3 {
+      margin-top: 0;
+      color: #1f7a74;
+      font-size: 24px;
+    }
+
+    .materiales {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 18px;
+      margin-top: 30px;
+    }
+
+    .material {
+  background: #fff;
+  border: 5px solid #222;
+  border-radius: 18px;
+  padding: 20px;
+  text-align: center;
+  font-weight: bold;
+  box-shadow: 7px 7px 0 rgba(0,0,0,0.25);
+  cursor: pointer;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease;
+}
+.material:hover {
+  transform: translateY(-10px) rotate(-2deg) scale(1.05);
+  box-shadow: 12px 12px 0 rgba(0,0,0,0.35);
+  background-color: #fff3b0;
+  border: 5px solid #eed85d;
+}
+
+.material img {
+  width: 70px;
+  height: 70px;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto 10px;
+  transition: transform 0.25s ease;
+}
+
+.material:hover img {
+  transform: scale(1.25) rotate(8deg);
+}
+
+
+    .tipos {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 22px;
+      margin-top: 35px;
+    }
+
+    .tipo {
+      border: 5px solid #222;
+      border-radius: 22px;
+      padding: 25px;
+      color: #222;
+      font-weight: bold;
+      min-height: 210px;
+      box-shadow: 8px 8px 0 rgba(0,0,0,0.25);
+      transition: transform 0.3s;
+    }
+
+    .tipo:hover {
+      transform: translateY(-8px);
+    }
+
+    .tipo h3 {
+      margin-top: 0;
+      font-size: 25px;
+    }
+
+    .verde { background: #90be6d; 
+    border-color: #4d7c2f; }
+    .rojo { background: #ef476f; color: white; 
+     border-color: #9b1d3a;}
+    .turquesa { background: #2ec4b6;
+     border-color: #0e6f75; }
+    .morado { background: #cdb4db; 
+     border-color: #b588cf;}
+    .naranja { background: #f8961e;
+     border-color: #b85c00; }
+    .gris { background: #495057; color: white;
+      border-color: #222; }
+
+    .linea-juego {
+      margin-top: 40px;
+      display: grid;
+      gap: 18px;
+    }
+
+    .evento {
+      display: grid;
+      grid-template-columns: 80px 1fr;
+      gap: 18px;
+      align-items: center;
+      background: white;
+      border: 5px solid #222;
+      border-radius: 18px;
+      padding: 18px;
+      box-shadow: 7px 7px 0 #00000052;
+    }
+
+    .icono {
+      width: 70px;
+      height: 70px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: #fff3b0;
+      border: 4px solid #eed85d;
+      font-size: 34px;
+    }
+
+    .evento h3 {
+      margin: 0 0 5px;
+      color: #1f7a74;
+    }
+
+    .evento p {
+      margin: 0;
+      font-weight: bold;
+    }
+
+    .final {
+      background:
+        radial-gradient(circle at 20% 20%, #ffd166 0 10%, transparent 11%),
+        radial-gradient(circle at 80% 70%, #ef476f 0 12%, transparent 13%),
+        linear-gradient(135deg, #06d6a0, #118ab2);
+      color: white;
+      text-align: center;
+    }
+
+    .final .contenedor {
+      border: 6px solid #222;
+      border-radius: 28px;
+      padding: 45px;
+      background: rgba(0,0,0,0.15);
+      box-shadow: 12px 12px 0 #073b4c;
+      animation: pulso 2s infinite;
+    }
+
+    .final h2 {
+      font-size: 44px;
+      margin-top: 0;
+    }
+
+    .final p {
+      font-size: 22px;
+      font-weight: bold;
+    }
+
+    footer {
+      background: #222;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      font-weight: bold;
+    }
+
+    @keyframes entrada {
+      from {
+        opacity: 0;
+        transform: translateY(40px) scale(0.95);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    @keyframes pulso {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.02); }
+      100% { transform: scale(1); }
+    }
+
+    @media (max-width: 800px) {
+      .intro-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .foto-juego {
+        transform: none;
+      }
+
+      .evento {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .icono {
+        margin: auto;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <div class="portada">
+      <span class="etiqueta">Bienestar educativo</span>
+      <h1>¡A tiempo con mi bienestar!</h1>
+      <p class="subtitulo">
+        Maneja tu carga, recupera tu equilibrio
+      </p>
+
+      <div class="botones">
+        <a href="#objetivo">Objetivo</a>
+        <a href="#materiales">Materiales</a>
+        <a href="#reglas">Reglas</a>
+        <a href="#casillas">Casillas</a>
+      </div>
+    </div>
+  </header>
+
+  <section id="objetivo">
+    <div class="contenedor intro-grid">
+      <div class="foto-juego">
+        <img src="juego.jpeg" alt="Imagen del juego de mesa">
+      </div>
+
+      <div class="texto-destacado">
+        <h2>Objetivo del juego</h2>
+        <p>
+          El objetivo es avanzar por el tablero mientras reduces tu carga de estrés
+          y consigues estrategias de bienestar. Gana quien logre mantener mejor
+          equilibrio entre responsabilidades, descanso y autocuidado.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section id="materiales">
+    <div class="contenedor">
+      <h2 class="titulo-seccion">Materiales del juego</h2>
+
+      <div class="materiales">
+        <div class="material"><span>🎲</span>Dado</div>
+        <div class="material"><span>🧍</span>Fichas de jugador</div>
+        <div class="material"><img src="bienestar.png" alt="bienestar">Fichas de estrategia</div>
+        <div class="material"><img src="carga.png" alt="carga">Fichas de carga</div>
+        <div class="material"><img src="pregunta.png" alt="pregunta">Cartas de pregunta</div>
+        <div class="material"><img src="sobrecarga.png" alt="sobrecarga">Sobrecarga</div>
+        <div class="material"><img src="motivacion.png" alt="motivación">Motivación</div>
+        <div class="material"><span>🕒</span>Tablero</div>
+        <div class="material" ><img src="desafio.png" alt="desafío">Desafío</div>
+        <div class="material"><img src="castigo.png" alt="castigo">Castigo</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="reglas">
+    <div class="contenedor">
+      <h2 class="titulo-seccion">Instrucciones paso a paso</h2>
+
+      <div class="pasos">
+        <div class="paso">
+          <div class="numero">1</div>
+          <h3>Elige tu ficha</h3>
+          <p>Cada jugador escoge una ficha y la coloca en la casilla de inicio.</p>
+        </div>
+
+        <div class="paso">
+          <div class="numero">2</div>
+          <h3>Tira el dado</h3>
+          <p>En tu turno, lanza el dado y avanza el número de casillas indicado.</p>
+        </div>
+
+        <div class="paso">
+          <div class="numero">3</div>
+          <h3>Realiza la acción</h3>
+          <p>Lee la casilla donde caíste y cumple la indicación correspondiente.</p>
+        </div>
+
+        <div class="paso">
+          <div class="numero">4</div>
+          <h3>Gana estrategias</h3>
+          <p>Si respondes preguntas o caes en estrategias, puedes reducir tu estrés.</p>
+        </div>
+
+        <div class="paso">
+          <div class="numero">5</div>
+          <h3>Cuida tu carga</h3>
+          <p>Algunas cartas aumentan la carga de estrés, así que administra tus fichas.</p>
+        </div>
+
+        <div class="paso">
+          <div class="numero">6</div>
+          <h3>Llega al equilibrio</h3>
+          <p>Gana quien termine con menos carga y más estrategias de bienestar.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="casillas">
+    <div class="contenedor">
+      <h2 class="titulo-seccion">Tipos de casillas y cartas</h2>
+
+      <div class="tipos">
+        <div class="tipo verde">
+          <h3>Estrategias</h3>
+          <p>Son acciones positivas como planificar, descansar, dormir bien, estudiar mejor o pedir ayuda.</p>
+        </div>
+
+        <div class="tipo morado">
+          <h3>Pregunta</h3>
+          <p>El jugador responde una pregunta relacionada con bienestar, estrés o hábitos saludables.</p>
+        </div>
+
+        <div class="tipo turquesa">
+          <h3>Pasaporte Mágico</h3>
+          <p>Estas cartas ayudan a reducir la carga de estrés y acercan al jugador al equilibrio.</p>
+        </div>
+
+        <div class="tipo rojo">
+          <h3>Pase Rápido</h3>
+          <p>Representa acumulación de tareas, presión o situaciones que aumentan el estrés.</p>
+        </div>
+
+        <div class="tipo naranja">
+          <h3>Eventos especiales</h3>
+          <p>Pueden tener efectos variados: avanzar, retroceder, ganar o perder fichas.</p>
+        </div>
+
+        <div class="tipo gris">
+          <h3>Cárcel</h3>
+          <p>Si un jugador cae aquí, pierde un turno o paga 2 fichas de carga para salir.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="contenedor">
+      <h2 class="titulo-seccion">Recorrido del jugador</h2>
+
+      <div class="linea-juego">
+        <div class="evento">
+          <div class="icono">🕒</div>
+          <div>
+            <h3>Inicio</h3>
+            <p>Todos comienzan en la casilla de inicio con sus fichas preparadas.</p>
+          </div>
+        </div>
+
+        <div class="evento">
+          <div class="icono">🎲</div>
+          <div>
+            <h3>Movimiento</h3>
+            <p>El dado indica cuántas casillas debe avanzar cada jugador.</p>
+          </div>
+        </div>
+
+        <div class="evento">
+          <div class="icono">❓</div>
+          <div>
+            <h3>Pregunta o reto</h3>
+            <p>Algunas casillas piden responder una pregunta para ganar beneficios.</p>
+          </div>
+        </div>
+
+        <div class="evento">
+          <div class="icono">🧠</div>
+          <div>
+            <h3>Estrategia ganada</h3>
+            <p>Las estrategias ayudan a disminuir la carga de estrés.</p>
+          </div>
+        </div>
+
+        <div class="evento">
+          <div class="icono">🏆</div>
+          <div>
+            <h3>Final</h3>
+            <p>Se comparan las fichas de carga y estrategias para elegir al ganador.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="final">
+    <div class="contenedor">
+      <h2>¿Quién gana?</h2>
+      <p>
+        Gana quien termine con menos carga de estrés y con más estrategias de bienestar.
+      </p>
+    </div>
+  </section>
+
+  <footer>
+    Juego educativo: ¡A tiempo con mi bienestar!
+  </footer>
+
+</body>
+</html>
